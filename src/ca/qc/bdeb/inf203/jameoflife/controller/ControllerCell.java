@@ -3,14 +3,12 @@
  * and open the template in the editor.
  */
 
-package ca.qc.bdeb.inf203.jaudiblegameoflife;
-
-import javax.swing.JPanel;
+package ca.qc.bdeb.inf203.jameoflife.controller;
 
 /**
  *
  * @author Nicolas Hurtubise
  */
-public class JSettingsPanel extends JPanel {
+public class ControllerCell {
     
 }

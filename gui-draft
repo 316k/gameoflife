@@ -1,25 +1,94 @@
+=TP1 : Jeu de la vie en interface graphique
+==Problématique
+    Différents problèmes se posent à travers ce TP. La réalisation d'un "Game of life" orienté objet(contrairement à l'original) devra se faire. De plus, la visualisation de générations intermédiaires pose un certain problème. À cela s'ajoute la problématique de l'environnement graphique avec Swing.
+==Solutions
+    Le côté orienté objet transparaîtra au niveau de l'aproche Modèle-Vue-Contrôlleur.
+
+===Modèles
+    Les modèles utilisés seront les suivants :
+* Un modèle pour la grille
+    Ce modèle s'occupera de la gestion du jeu à proprement parler, incluant le changement de générations et les cellules.
+    Pour ce qui est de la possibilité d'afficher des demi-générations, la solution la plus intéressante semble être l'utilisation d'une opacité propre aux cellules, calculée proportionnellement à la fraction de génération affichée, peut importe la fraction choisie.
+* Un modèle pour les règles.
+    Ce modèle s'occupera de traîter des fragments de la grille du jeu (grilles de 3x3 à la fois), selon des règles fournies sous la forme eg. "23/3" (survit à 2 et 3 voisins, naît à 3 voisins).
+
+===Vues
+    Les cellules de la grille seront des JButtons personnalisés, soit une classe fille implémentant une méthode particulière pour le dessin des boutons selon leur état (vivant/mort). Les différents panneaux seront définis dans des classes personnalisées.
+
+===Contrôlleurs
+    Feront ce que devront.
+
+==Plans graphiques
+===Fenêtre de début
+|--------------------------------------|
+|                            [_][+][X] |
+|--------------------------------------|
+| Jame of Life                         |
+|                                      |
+| Taille de la grille : [  x  ][  y  ] |
+|                                      |
+|--------------------------------------|
+
+
+
+
+===Fenêtre principale
 |-----------------------------------------------------------------------------------|
-| Fichier |                                                                         |
+| Fichier | À propos |                                                    [_][+][X] |
 |-----------------------------------------------------------------------------------|
 |                                                               |                   |
-| ............................................................. | Génération : 177  |
+| ............................................................. | Génération : 17.8 |
 | ...........................OOO............................... |                   |
 | ..........................OO.OO.............................. |                   |
 | ...........................OO................................ | Algorithme        |
-| ............................OOO.............................. |   * Conway        |
-| .............................O............................... |   * High Life     |
-| ............................................................. |   * Random        |
-| ............................................................. |                   |
-| ............................................................. |                   |
-| ............................................................. |                   |
+| ..........................O.OOO.............................. |   * Conway        |
+| ..........................OO.O............................... |   * High Life     |
+| ...........................O.....OO.......................... |   * Random        |
+| ...........................OOOOOOOOOO........................ |   * Custom        |
+| ............................OO.OO.OOO........................ |     [S123/B12] (?)|
+| .............................O...OOO......................... |                   |
+| .............................OO..OO.......................... | [x] Pac-man mode  |
+| ..............................OOOO........................... | [x] Cage mode     |
+| ............................................................. | [0.4] Générations |
 | ............................................................. |                   |
 | ............................................................. |  /'''''''''''''\  |
-| ............................................................. | |   Hear It !   | |
+| ............................................................. | | => Randomizer | |
 | ............................................................. |  \_____________/  |
 | ............................................................. |                   |
 | ............................................................. |  /'''''''''''''\  |
-| ............................................................. | | N  Génération | |
+| ............................................................. | | => Génération | |
 | ............................................................. |  \_____________/  |
 | ............................................................. |                   |
-|                                                               |      [Help]       |
+|                                                               |      [Aide]       |
 |-----------------------------------------------------------------------------------|
+
+
+
+===Fenêtre d'aide
+|-------------------------------------------|
+|                   Aide          [_][+][X] |
+|-------------------------------------------|
+|                                           |
+| Jame of life                             ^|
+| ============                             ||
+|                                          ||
+| Jame of life est une implémentation en   ||
+| java du traditionnel Conway's Game of     |
+| life.                                     |
+|                                           |
+| Options                                   |
+| =======                                   |
+| ...                                       |
+                    ...                     
+|-------------------------------------------|
+
+
+===Menus
+|---------------------------------------|
+| Fichier |            | À propos    |  |
+| --------------- |----| ----------- |--|
+| Nouvelle partie |    | Aide        |  |
+| Sauvegarder     |    |-------------|  |
+| --------------- |     
+| Quitter         |
+|-----------------|
