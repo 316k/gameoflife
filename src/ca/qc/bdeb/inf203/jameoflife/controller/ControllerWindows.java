@@ -2,12 +2,6 @@ package ca.qc.bdeb.inf203.jameoflife.controller;
 
 import ca.qc.bdeb.inf203.jameoflife.view.WindowMain;
 import ca.qc.bdeb.inf203.jameoflife.view.WindowNewGame;
-import java.awt.Shape;
-import javax.security.auth.Destroyable;
-import javax.swing.JFrame;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
-import javax.xml.bind.annotation.XmlElementDecl;
-import sun.awt.GlobalCursorManager;
 
 /**
  *

@@ -12,11 +12,12 @@ import javax.swing.JPanel;
  * @author Nicolas Hurtubise
  */
 public class PanelGrid extends JPanel {
+
     private JCell[][] cellules;
-            
+
     public PanelGrid(int width, int height) {
         this.setBackground(Color.black);
-        
+
         cellules = new JCell[width][height];
 
         this.setLayout(new GridLayout(width, height));
@@ -24,16 +25,15 @@ public class PanelGrid extends JPanel {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 cellules[i][j] = new JCell(i, j);
-                cellules[i][j].addMouseListener(new MouseAdapter(){
+                cellules[i][j].addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         JCell cellule = (JCell) e.getSource();
-                        ControllerGrid.flipCell(cellule);
-                        System.out.println(cellule.getOpacite());
+                        ControllerGrid.flipCell(((PanelGrid) cellule.getParent()).getGrid(), cellule.getCoordonneeX(), cellule.getCoordonneeY());
                         cellule.repaint();
                     }
                 });
-                
+
                 cellules[i][j].setVisible(true);
 
                 this.add(cellules[i][j]);

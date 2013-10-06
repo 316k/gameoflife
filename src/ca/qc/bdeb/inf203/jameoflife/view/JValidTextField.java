@@ -42,20 +42,6 @@ public class JValidTextField extends JTextField {
                 vTxtField.check();
             }
         });
-        this.addContainerListener(new ContainerAdapter() {
-            @Override
-            public void componentAdded(ContainerEvent e) {
-                JValidTextField vTxtField = (JValidTextField) e.getSource();
-                vTxtField.check();
-            }
-        });
-//        this.addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentShown(ComponentEvent e) {
-//                JValidTextField vTxtField = (JValidTextField) e.getSource();
-//                vTxtField.check();
-//            }
-//        });
         this.errorColor = errorColor;
         this.validColor = validColor;
     }

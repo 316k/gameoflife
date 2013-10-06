@@ -59,7 +59,7 @@ public class GridTest {
         expectedGrid.setBooleans(exprectedValue);
 
         grid.incrementGeneration(1);
-        assertEquals(expectedGrid.getBooleans(), grid.getBooleans());
+        assertArrayEquals(expectedGrid.getBooleans(), grid.getBooleans());
     }
 
     @Test
@@ -77,14 +77,14 @@ public class GridTest {
         expectedGrid1.setBooleans(exprectedValue1);
 
         grid.incrementGeneration(1);
-        assertEquals(expectedGrid1.getBooleans(), grid.getBooleans());
+        assertArrayEquals(expectedGrid1.getBooleans(), grid.getBooleans());
 
         Grid expectedGrid2 = new Grid(x, y, rule);
         boolean[][] exprectedValue2 = {{true, true, false}, {false, false, true}, {true, true, false}};
         expectedGrid2.setBooleans(exprectedValue2);
 
         grid.incrementGeneration(1);
-        assertEquals(expectedGrid2.getBooleans(), grid.getBooleans());
+        assertArrayEquals(expectedGrid2.getBooleans(), grid.getBooleans());
 
     }
 
@@ -106,11 +106,11 @@ public class GridTest {
         expectedGrid.setBooleans(exprectedValue);
 
         grid.incrementGeneration(0.5);
-        assertEquals(grid.getBooleans(), originalGrid.getBooleans());
+        assertArrayEquals(grid.getBooleans(), originalGrid.getBooleans());
         
         grid.incrementGeneration(0.5);
 
-        assertEquals(expectedGrid.getBooleans(), grid.getBooleans());
+        assertArrayEquals(expectedGrid.getBooleans(), grid.getBooleans());
     }
     
     @Test
@@ -130,13 +130,13 @@ public class GridTest {
         expectedGrid1.setBooleans(exprectedValue1);
 
         grid.incrementGeneration(1);
-        assertEquals(expectedGrid1.getBooleans(), grid.getBooleans());
+        assertArrayEquals(expectedGrid1.getBooleans(), grid.getBooleans());
         
         Grid expectedGrid2 = new Grid(x, y, rule);
         boolean[][] exprectedValue2 = {{false,true,false,false}, {false,false,false,false}, {false,false,true,false}, {true,false,true,false}};
         expectedGrid2.setBooleans(exprectedValue2);
         
         grid.incrementGeneration(1);
-        assertEquals(expectedGrid2.getBooleans(), grid.getBooleans());
+        assertArrayEquals(expectedGrid2.getBooleans(), grid.getBooleans());
     }
 }

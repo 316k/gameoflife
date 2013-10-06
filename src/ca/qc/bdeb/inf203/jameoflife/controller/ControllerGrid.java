@@ -34,10 +34,9 @@ public class ControllerGrid {
         return true;
     }
     
-    public static void flipCell(JCell cellule) {
-        int x = cellule.getCoordonneeX();
-        int y = cellule.getCoordonneeY();
-        cellule.setOpacite(grid.flipCell(x, y).getOpacites()[x][y]);
+    public static void flipCell(JCell[][] grid, int x, int y) {
+        ControllerGrid.grid.flipCell(x, y);
+        synchroniser(grid);
     }
     
     public static void randomize(JCell[][] grid) {

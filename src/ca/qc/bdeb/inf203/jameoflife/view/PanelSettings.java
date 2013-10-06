@@ -28,7 +28,7 @@ public class PanelSettings extends JPanel {
     private JValidTextField vTxtRule, vTxtGeneration;
 
     public PanelSettings() {
-        
+
         JPanel content = new JPanel();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
@@ -41,13 +41,12 @@ public class PanelSettings extends JPanel {
         content.add(new JLabel("  * Custom"));
         vTxtRule = new JValidTextField(Color.white, Color.pink);
         vTxtRule.setRegex("[0-8]{0,9}/[0-8]{0,9}");
-        
+
         vTxtRule.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyReleased(KeyEvent e) {
                 JValidTextField vTxtField = (JValidTextField) e.getSource();
-                btnProchaineGeneration.setEnabled(vTxtField.isInputValid());
-                
+                btnProchaineGeneration.setEnabled(((PanelSettings) vTxtField.getParent().getParent()).isInputValid());
             }
         });
         content.add(vTxtRule);
@@ -55,7 +54,6 @@ public class PanelSettings extends JPanel {
         content.add(new JLabel());
 
         content.add(new JCheckBox("Pac-man mode"));
-        content.add(new JCheckBox("Cage mode"));
 
         content.add(new JLabel());
 
@@ -64,12 +62,20 @@ public class PanelSettings extends JPanel {
         vTxtGeneration.setMaxValue(2000.0);
         vTxtGeneration.setMinValue(0.0);
         vTxtGeneration.setNumericOnly(true);
+        vTxtGeneration.setText("0.5");
+        vTxtGeneration.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                JValidTextField vTxtField = (JValidTextField) e.getSource();
+                btnProchaineGeneration.setEnabled(((PanelSettings) vTxtField.getParent().getParent()).isInputValid());
+            }
+        });
         content.add(vTxtGeneration);
         content.add(new JLabel("générations"));
 
         content.add(new JLabel(" "));
         content.setName("content");
-        
+
         btnRandomize = new JButton("Randomizer");
         btnRandomize.setName("rnd");
         btnRandomize.addActionListener(new ActionListener() {
@@ -77,7 +83,7 @@ public class PanelSettings extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 JButton btn = (JButton) e.getSource();
                 WindowMain window = (WindowMain) btn.getParent().getParent().getParent().getParent().getParent().getParent();
-                
+
                 JCell[][] grid = window.getPanelGrid().getGrid();
                 ControllerGrid.randomize(grid);
             }
@@ -92,14 +98,9 @@ public class PanelSettings extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JButton btn = (JButton) e.getSource();
-                
+
                 WindowMain window = (WindowMain) btn.getParent().getParent().getParent().getParent().getParent().getParent();
-                
-                Container c = btn.getParent();
-                for (int i = 1; c != null; i++) {
-                    System.out.println(i + "th parent : " + c.getName());
-                    c = c.getParent();
-                }
+
                 double nbrGeneration = ((PanelSettings) btn.getParent().getParent()).getGeneration();
                 JCell[][] grid = window.getPanelGrid().getGrid();
                 ControllerGrid.prochaineGeneration(grid, nbrGeneration);
@@ -118,7 +119,14 @@ public class PanelSettings extends JPanel {
     }
 
     private double getGeneration() {
-        System.out.println(vTxtGeneration.getText());
         return Double.parseDouble(vTxtGeneration.getText());
+    }
+
+    public boolean isInputValid() {
+        boolean valid = vTxtGeneration.isInputValid();
+        if (vTxtRule.isEnabled() && !vTxtRule.isInputValid()) {
+            valid = false;
+        }
+        return valid;
     }
 }
