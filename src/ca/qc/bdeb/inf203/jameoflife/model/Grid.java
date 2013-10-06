@@ -26,6 +26,15 @@ public class Grid {
         grid[x][y] = active;
         return this;
     }
+    
+    public boolean getCell(int x, int y) {
+        return grid[x][y];
+    }
+    
+    public Grid flipCell(int x, int y) {
+        grid[x][y] = !grid[x][y];
+        return this;
+    }
 
     public Grid randomize() {
         for (int i = 0; i < grid.length; i++) {
@@ -45,7 +54,7 @@ public class Grid {
         return this;
     }
 
-    public Grid setRuleSet(String ruleSet) {
+    public Grid setRuleSet(String ruleSet) throws IllegalArgumentException {
         this.ruleSet = new RuleSet(ruleSet);
         return this;
     }
@@ -76,8 +85,8 @@ public class Grid {
 
         boolean[][] context = new boolean[3][3];
 
-        int x, y = 0;
-        boolean value = false;
+        int x, y;
+        boolean value;
 
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
@@ -150,6 +159,7 @@ public class Grid {
 
     /**
      * Méthode utilisée au niveau des tests unitaires
+     *
      * @return État actuel de la grille en tableau de booléens
      */
     public boolean[][] getBooleans() {
@@ -158,6 +168,7 @@ public class Grid {
 
     /**
      * Méthode utilisée au niveau des tests unitaires
+     *
      * @param grid
      * @return this
      */
@@ -165,10 +176,16 @@ public class Grid {
         this.grid = grid;
         return this;
     }
+    
+    /**
+     * Indique si la grille est stable (si les cellules resteront à jamais dans le même état).
+     */
+    public boolean isStable() {
+        return this.grid == this.nextGeneration();
+    }
 
     /**
-     * Méthode dumpant la grille actuelle au format texte.
-     * O => cellule vivante
+     * Méthode dumpant la grille actuelle au format texte. O => cellule vivante
      * . => cellule morte
      */
     public void dump() {

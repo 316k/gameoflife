@@ -10,7 +10,11 @@ public class RuleSet {
     private int[] survive = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
     private int[] born = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-    public RuleSet(String rule) {
+    public RuleSet(String rule) throws IllegalArgumentException {
+        if (!rule.matches("[0-8]{0,9}/[0-8]{0,9}")) {
+            throw new IllegalArgumentException("Bad RuleSet string format.");
+        }
+        
         this.rule = rule;
         String survive = rule.substring(0, rule.indexOf("/"));
         String born = rule.substring(rule.indexOf("/") + 1);
@@ -42,18 +46,16 @@ public class RuleSet {
                 }
             }
         }
-                
+
         if (context[1][1]) {
             for (int i = 0; !nextValue && i < survive.length; i++) {
                 if (survive[i] == voisins) {
-                    System.out.println("S : " + survive[i] + " contient " + voisins);
                     nextValue = true;
                 }
             }
         } else {
             for (int i = 0; !nextValue && i < born.length; i++) {
                 if (born[i] == voisins) {
-                    System.out.println("B : " + born[i] + " contient " + voisins);
                     nextValue = true;
                 }
             }
