@@ -4,9 +4,16 @@ import ca.qc.bdeb.inf203.jameoflife.model.Grid;
 import ca.qc.bdeb.inf203.jameoflife.model.RuleSet;
 import ca.qc.bdeb.inf203.jameoflife.view.JCell;
 import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.text.NumberFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,7 +38,7 @@ public class ControllerGrid {
         ControllerGrid.grid.setRuleSet(ruleString);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
-    
+
     public static void flipCell(JCell[][] grid, int x, int y, JLabel lblGeneration, JButton btnProchaineGeneration) {
         ControllerGrid.grid.flipCell(x, y);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
@@ -46,7 +53,7 @@ public class ControllerGrid {
         ControllerGrid.grid.incrementGeneration(nbrGenerations);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
-    
+
     public static void setWrap(boolean isSelected, JCell[][] grid, JLabel lblGeneration, JButton btnProchaineGeneration) {
         ControllerGrid.grid.setWrap(isSelected);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
@@ -73,6 +80,19 @@ public class ControllerGrid {
             btnProchaineGeneration.setText(btnProchaineGeneration.getText());
             btnProchaineGeneration.setToolTipText("La grille est déjà dans un état stable. La prochaine génération sera identique à celle-ci.");
             btnProchaineGeneration.setBackground(Color.pink);
+        }
+    }
+
+    public static void save() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showSaveDialog(null);
+        try {
+            PrintWriter fichierSauvegarde = new PrintWriter(new FileOutputStream(fileChooser.getSelectedFile()));
+            fichierSauvegarde.print(grid.dump());
+            fichierSauvegarde.close();
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(ControllerGrid.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

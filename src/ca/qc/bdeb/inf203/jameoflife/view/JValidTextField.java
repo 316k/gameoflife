@@ -18,7 +18,7 @@ import javax.swing.JTextField;
  * @author Nicolas Hurtubise
  */
 public class JValidTextField extends JTextField {
-    
+
     private Color errorColor;
     private Color validColor;
     private String validationRegex = null;
@@ -45,15 +45,15 @@ public class JValidTextField extends JTextField {
         this.errorColor = errorColor;
         this.validColor = validColor;
     }
-    
+
     public void setRegex(String validationRegex) {
         this.validationRegex = validationRegex;
     }
-    
+
     public void setMinValue(Double min) {
         this.minValue = min;
     }
-    
+
     public void setMaxValue(Double max) {
         this.maxValue = max;
     }
@@ -65,15 +65,15 @@ public class JValidTextField extends JTextField {
      */
     public boolean isInputValid() {
         boolean valid = true;
-        
+
         if (this.validationRegex != null && !this.getText().matches(validationRegex)) {
             valid = false;
         }
-        
+
         if (this.numericOnly && !this.getText().matches("-?[0-9]+(\\.[0-9]+)?")) {
             valid = false;
         }
-        
+
         if (this.maxValue != null) {
             try {
                 if (Double.parseDouble(this.getText()) > maxValue) {
@@ -84,7 +84,7 @@ public class JValidTextField extends JTextField {
                 valid = false;
             }
         }
-        
+
         if (this.minValue != null) {
             try {
                 if (Double.parseDouble(this.getText()) < minValue) {
@@ -97,7 +97,7 @@ public class JValidTextField extends JTextField {
         }
         return valid;
     }
-    
+
     public void setNumericOnly(boolean numericOnly) {
         this.numericOnly = numericOnly;
     }
@@ -111,7 +111,7 @@ public class JValidTextField extends JTextField {
         } else {
             this.setBackground(errorColor);
         }
-        
+
         this.repaint();
     }
 }

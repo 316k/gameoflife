@@ -14,7 +14,7 @@ public class RuleSet {
         if (!rule.matches("[0-8]{0,9}/[0-8]{0,9}")) {
             throw new IllegalArgumentException("Bad RuleSet string format.");
         }
-        
+
         this.rule = rule;
         String survive = rule.substring(0, rule.indexOf("/"));
         String born = rule.substring(rule.indexOf("/") + 1);

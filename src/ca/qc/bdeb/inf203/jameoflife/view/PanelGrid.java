@@ -46,7 +46,7 @@ public class PanelGrid extends JPanel {
     public JCell[][] getGrid() {
         return this.cellules;
     }
-    
+
     public PanelSettings getPanelSettings() {
         WindowMain window = (WindowMain) this.getParent().getParent().getParent().getParent().getParent();
         return window.getPanelSettings();

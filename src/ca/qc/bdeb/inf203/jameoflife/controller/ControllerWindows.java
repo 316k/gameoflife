@@ -15,6 +15,9 @@ public class ControllerWindows {
     private static WindowApropos fenetreApropos = null;
 
     public static void nouvellePartie() {
+        if(fenetreNouvellePartie != null) {
+            fenetreNouvellePartie.dispose();
+        }
         fenetreNouvellePartie = new WindowNouvellePartie();
     }
 
