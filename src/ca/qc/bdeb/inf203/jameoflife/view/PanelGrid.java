@@ -30,8 +30,7 @@ public class PanelGrid extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         JCell cellule = (JCell) e.getSource();
-                        PanelSettings panel = ((WindowMain) cellule.getParent().getParent().getParent().getParent().getParent()).getPanelSettings();
-                        ControllerGrid.flipCell(((PanelGrid) cellule.getParent()).getGrid(), cellule.getCoordonneeX(), cellule.getCoordonneeY(), panel.getLblGeneration(), panel.getBtnProchaineGeneration());
+                        ControllerGrid.flipCell(((PanelGrid) cellule.getParent()).getGrid(), cellule.getCoordonneeX(), cellule.getCoordonneeY(), getPanelSettings().getLblGeneration(), getPanelSettings().getBtnProchaineGeneration());
                     }
                 });
 
@@ -44,7 +43,12 @@ public class PanelGrid extends JPanel {
         this.setVisible(true);
     }
 
-    JCell[][] getGrid() {
+    public JCell[][] getGrid() {
         return this.cellules;
+    }
+    
+    public PanelSettings getPanelSettings() {
+        WindowMain window = (WindowMain) this.getParent().getParent().getParent().getParent();
+        return window.getPanelSettings();
     }
 }

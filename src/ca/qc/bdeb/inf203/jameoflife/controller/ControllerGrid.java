@@ -3,6 +3,7 @@ package ca.qc.bdeb.inf203.jameoflife.controller;
 import ca.qc.bdeb.inf203.jameoflife.model.Grid;
 import ca.qc.bdeb.inf203.jameoflife.model.RuleSet;
 import ca.qc.bdeb.inf203.jameoflife.view.JCell;
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -25,15 +26,9 @@ public class ControllerGrid {
      * @return si le changement de règle a fonctionné (si la règle spécifiée est
      * valide)
      */
-    public static boolean setRules(String ruleString) {
-        try {
-            grid.setRuleSet(ruleString);
-        }
-        catch (IllegalArgumentException e) {
-            return false;
-        }
-
-        return true;
+    public static void setRules(String ruleString, JCell[][] grid, JLabel lblGeneration, JButton btnProchaineGeneration) {
+        ControllerGrid.grid.setRuleSet(ruleString);
+        synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
 
     public static void flipCell(JCell[][] grid, int x, int y, JLabel lblGeneration, JButton btnProchaineGeneration) {
@@ -50,6 +45,11 @@ public class ControllerGrid {
         ControllerGrid.grid.incrementGeneration(nbrGenerations);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
+    
+    public static void setWrap(boolean isSelected, JCell[][] grid, JLabel lblGeneration, JButton btnProchaineGeneration) {
+        ControllerGrid.grid.setWrap(isSelected);
+        synchroniser(grid, lblGeneration, btnProchaineGeneration);
+    }
 
     public static void synchroniser(JCell[][] grid, JLabel lblGeneration, JButton btnProchaineGeneration) {
         double[][] opacites = ControllerGrid.grid.getOpacites();
@@ -64,10 +64,11 @@ public class ControllerGrid {
         lblGeneration.setText("Génération #" + ControllerGrid.grid.getGeneration());
         btnProchaineGeneration.setText("Prochaine Génération");
         btnProchaineGeneration.setToolTipText(null);
+        btnProchaineGeneration.setBackground(Color.green);
         if (ControllerGrid.grid.isStable()) {
-            
-            btnProchaineGeneration.setText(btnProchaineGeneration.getText() + "*");
+            btnProchaineGeneration.setText(btnProchaineGeneration.getText());
             btnProchaineGeneration.setToolTipText("La grille est déjà dans un état stable. La prochaine génération sera identique à celle-ci.");
+            btnProchaineGeneration.setBackground(Color.pink);
         }
     }
 }

@@ -37,7 +37,6 @@ public class WindowMain extends JFrame {
 
         this.setLayout(new GridLayout(1, 2));
         ControllerGrid.setGridDimensions(lignes, colonnes);
-        ControllerGrid.setRules("23/3");
 
         pnlGrid = new PanelGrid(lignes, colonnes);
         this.add(pnlGrid);
