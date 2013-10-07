@@ -46,7 +46,7 @@ public class WindowNouvellePartie extends JFrame {
         vTxtLignes.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                ((WindowNouvellePartie)((JValidTextField) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent()).check();
+                check();
             }
         });
 
@@ -60,7 +60,7 @@ public class WindowNouvellePartie extends JFrame {
         vTxtColonnes.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                ((WindowNouvellePartie)((JValidTextField) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent()).check();
+                check();
             }
         });
         JPanel content = new JPanel();
@@ -81,8 +81,7 @@ public class WindowNouvellePartie extends JFrame {
         btnConfirm.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                WindowNouvellePartie window = (WindowNouvellePartie) ((JButton) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent();
-                ControllerWindows.fenetreNouvellePartieOk(window.getLignes(), window.getColonnes());
+                ControllerWindows.fenetreNouvellePartieOk(getLignes(), getColonnes());
             }
         });
         buttons.add(btnConfirm);
@@ -90,10 +89,9 @@ public class WindowNouvellePartie extends JFrame {
         contentPane.add(content);
         contentPane.add(buttons);
 
-        this.setLocation(400, 200);
-
         this.getContentPane().add(contentPane);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
@@ -108,5 +106,4 @@ public class WindowNouvellePartie extends JFrame {
     public int getColonnes() {
         return Integer.parseInt(vTxtColonnes.getText());
     }
-
 }

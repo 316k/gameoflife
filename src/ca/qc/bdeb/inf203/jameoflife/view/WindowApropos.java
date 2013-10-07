@@ -39,6 +39,7 @@ public class WindowApropos extends JFrame {
         txtHelp.setPreferredSize(new Dimension(450, 550));
         this.add(txtHelp);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 }

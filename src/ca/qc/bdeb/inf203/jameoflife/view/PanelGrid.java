@@ -48,7 +48,7 @@ public class PanelGrid extends JPanel {
     }
     
     public PanelSettings getPanelSettings() {
-        WindowMain window = (WindowMain) this.getParent().getParent().getParent().getParent();
+        WindowMain window = (WindowMain) this.getParent().getParent().getParent().getParent().getParent();
         return window.getPanelSettings();
     }
 }

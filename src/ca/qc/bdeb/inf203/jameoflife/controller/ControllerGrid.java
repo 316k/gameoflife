@@ -4,6 +4,7 @@ import ca.qc.bdeb.inf203.jameoflife.model.Grid;
 import ca.qc.bdeb.inf203.jameoflife.model.RuleSet;
 import ca.qc.bdeb.inf203.jameoflife.view.JCell;
 import java.awt.Color;
+import java.text.NumberFormat;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -30,7 +31,7 @@ public class ControllerGrid {
         ControllerGrid.grid.setRuleSet(ruleString);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
-
+    
     public static void flipCell(JCell[][] grid, int x, int y, JLabel lblGeneration, JButton btnProchaineGeneration) {
         ControllerGrid.grid.flipCell(x, y);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
@@ -61,7 +62,10 @@ public class ControllerGrid {
             }
         }
 
-        lblGeneration.setText("Génération #" + ControllerGrid.grid.getGeneration());
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(2);
+        nf.setMaximumFractionDigits(2);
+        lblGeneration.setText("Génération #" + nf.format(ControllerGrid.grid.getGeneration()));
         btnProchaineGeneration.setText("Prochaine Génération");
         btnProchaineGeneration.setToolTipText(null);
         btnProchaineGeneration.setBackground(Color.green);
