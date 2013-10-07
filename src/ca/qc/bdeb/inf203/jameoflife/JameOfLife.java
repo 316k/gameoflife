@@ -8,6 +8,6 @@ import ca.qc.bdeb.inf203.jameoflife.controller.ControllerWindows;
 public class JameOfLife {
 
     public static void main(String[] args) {
-        ControllerWindows.newGame();
+        ControllerWindows.nouvellePartie();
     }
 }

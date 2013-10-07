@@ -23,14 +23,14 @@ import javax.swing.JTextField;
  *
  * @author Nicolas Hurtubise
  */
-public class WindowNewGame extends JFrame {
+public class WindowNouvellePartie extends JFrame {
 
     private JValidTextField vTxtLignes = new JValidTextField(Color.white, Color.pink);
     private JValidTextField vTxtColonnes = new JValidTextField(Color.white, Color.pink);
     private JButton btnConfirm = new JButton();
 
-    public WindowNewGame() {
-        this.setTitle("New Game - Jame of Life");
+    public WindowNouvellePartie() {
+        this.setTitle("Nouvelle Partie - Jame of Life");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel contentPane = new JPanel();
@@ -46,7 +46,7 @@ public class WindowNewGame extends JFrame {
         vTxtLignes.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                ((WindowNewGame)((JValidTextField) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent()).check();
+                ((WindowNouvellePartie)((JValidTextField) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent()).check();
             }
         });
 
@@ -60,7 +60,7 @@ public class WindowNewGame extends JFrame {
         vTxtColonnes.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                ((WindowNewGame)((JValidTextField) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent()).check();
+                ((WindowNouvellePartie)((JValidTextField) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent()).check();
             }
         });
         JPanel content = new JPanel();
@@ -81,8 +81,8 @@ public class WindowNewGame extends JFrame {
         btnConfirm.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                WindowNewGame window = (WindowNewGame) ((JButton) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent();
-                ControllerWindows.windowNewGameOk(window.getLignes(), window.getColonnes());
+                WindowNouvellePartie window = (WindowNouvellePartie) ((JButton) e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent();
+                ControllerWindows.fenetreNouvellePartieOk(window.getLignes(), window.getColonnes());
             }
         });
         buttons.add(btnConfirm);

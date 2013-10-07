@@ -1,7 +1,8 @@
 package ca.qc.bdeb.inf203.jameoflife.controller;
 
+import ca.qc.bdeb.inf203.jameoflife.view.WindowApropos;
 import ca.qc.bdeb.inf203.jameoflife.view.WindowMain;
-import ca.qc.bdeb.inf203.jameoflife.view.WindowNewGame;
+import ca.qc.bdeb.inf203.jameoflife.view.WindowNouvellePartie;
 
 /**
  *
@@ -10,14 +11,23 @@ import ca.qc.bdeb.inf203.jameoflife.view.WindowNewGame;
 public class ControllerWindows {
 
     private static WindowMain mainWindow = null;
-    private static WindowNewGame newGameWindow = null;
+    private static WindowNouvellePartie fenetreNouvellePartie = null;
+    private static WindowApropos fenetreApropos = null;
 
-    public static void newGame() {
-        newGameWindow = new WindowNewGame();
+    public static void nouvellePartie() {
+        fenetreNouvellePartie = new WindowNouvellePartie();
     }
 
-    public static void windowNewGameOk(int lignes, int colonnes) {
+    public static void fenetreNouvellePartieOk(int lignes, int colonnes) {
         mainWindow = new WindowMain(lignes, colonnes);
-        newGameWindow.dispose();
+        fenetreNouvellePartie.dispose();
+    }
+
+    public static void apropos() {
+        if (fenetreApropos != null) {
+            fenetreApropos.dispose();
+        }
+
+        fenetreApropos = new WindowApropos();
     }
 }

@@ -31,7 +31,7 @@ public class WindowMain extends JFrame {
             }
 
             public void windowClosed(WindowEvent e) {
-                ControllerWindows.newGame();
+                ControllerWindows.nouvellePartie();
             }
         });
 
