@@ -26,13 +26,15 @@ public class PanelSettings extends JPanel {
 
     private JButton btnRandomize, btnProchaineGeneration;
     private JValidTextField vTxtRule, vTxtGeneration;
+    private JLabel lblGeneration;
 
     public PanelSettings() {
 
         JPanel content = new JPanel();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
-        content.add(new JLabel("Génération #0"));
+        lblGeneration = new JLabel("Génération #0");
+        content.add(lblGeneration);
         content.add(new JLabel());
         content.add(new JLabel("Algorithme"));
         content.add(new JLabel("  * Conway"));
@@ -85,7 +87,7 @@ public class PanelSettings extends JPanel {
                 WindowMain window = (WindowMain) btn.getParent().getParent().getParent().getParent().getParent().getParent();
 
                 JCell[][] grid = window.getPanelGrid().getGrid();
-                ControllerGrid.randomize(grid);
+                ControllerGrid.randomize(grid, lblGeneration, btnProchaineGeneration);
             }
         });
 
@@ -101,9 +103,9 @@ public class PanelSettings extends JPanel {
 
                 WindowMain window = (WindowMain) btn.getParent().getParent().getParent().getParent().getParent().getParent();
 
-                double nbrGeneration = ((PanelSettings) btn.getParent().getParent()).getGeneration();
+                double nbrGeneration = ((PanelSettings) btn.getParent().getParent()).getSautDeGeneration();
                 JCell[][] grid = window.getPanelGrid().getGrid();
-                ControllerGrid.prochaineGeneration(grid, nbrGeneration);
+                ControllerGrid.prochaineGeneration(grid, nbrGeneration, lblGeneration, btnProchaineGeneration);
             }
         });
 
@@ -118,7 +120,15 @@ public class PanelSettings extends JPanel {
         this.setVisible(true);
     }
 
-    private double getGeneration() {
+    public JButton getBtnProchaineGeneration() {
+        return btnProchaineGeneration;
+    }
+
+    public JLabel getLblGeneration() {
+        return lblGeneration;
+    }
+
+    private double getSautDeGeneration() {
         return Double.parseDouble(vTxtGeneration.getText());
     }
 

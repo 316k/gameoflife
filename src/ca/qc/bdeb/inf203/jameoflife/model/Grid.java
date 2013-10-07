@@ -26,11 +26,11 @@ public class Grid {
         grid[x][y] = active;
         return this;
     }
-    
+
     public boolean getCell(int x, int y) {
         return grid[x][y];
     }
-    
+
     public Grid flipCell(int x, int y) {
         grid[x][y] = !grid[x][y];
         return this;
@@ -60,19 +60,25 @@ public class Grid {
     }
 
     public Grid incrementGeneration(double nbrGenerations) {
+        // On arrondit les doubles pour éviter des trucs étranges
+        // @TODO : Trouver une façon plus fiable.
+        nbrGenerations = ((int) (nbrGenerations * 10000.0)) / 10000.0;
+        generation = ((int) (generation * 10000.0)) / 10000.0;
         if (nbrGenerations + generation < Math.floor(generation) + 1) {
             // Génération incomplète: aucune incidence sur l'état des cases
             generation += nbrGenerations;
-        } else {
+        } else if (nbrGenerations + generation > Math.floor(generation) + 1) {
             // Complétion d'une (ou plusieurs) génération(s) :
             // On passe à la génération suivante, puis on rappelle la fonction
             // autant de fois qu'il le faut.
             grid = nextGeneration();
-            generation += (Math.floor(generation) + 1 - generation);
-            nbrGenerations -= (Math.floor(generation) + 1 - generation);
+            generation = Math.floor(generation) + 1.0;
+            nbrGenerations -= (Math.floor(generation) - generation + 1.0);
             incrementGeneration(nbrGenerations);
+        } else if (nbrGenerations + generation == Math.floor(generation) + 1) {
+            generation += nbrGenerations;
+            grid = nextGeneration();
         }
-
         return this;
     }
 
@@ -176,12 +182,20 @@ public class Grid {
         this.grid = grid;
         return this;
     }
-    
+
     /**
-     * Indique si la grille est stable (si les cellules resteront à jamais dans le même état).
+     * Indique si la grille est stable (si les cellules resteront à jamais dans
+     * le même état).
      */
     public boolean isStable() {
-        return this.grid == this.nextGeneration();
+        boolean stable = true;
+        boolean[][] nextGrid = this.nextGeneration();
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                stable = stable && (grid[i][j] == nextGrid[i][j]);
+            }
+        }
+        return stable;
     }
 
     /**

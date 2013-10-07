@@ -17,7 +17,8 @@ import javax.swing.*;
 public class WindowMain extends JFrame {
 
     private PanelGrid pnlGrid;
-
+    private PanelSettings pnlSettings;
+    
     public WindowMain(int lignes, int colonnes) {
         this.setTitle("Jame of Life");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -39,9 +40,10 @@ public class WindowMain extends JFrame {
         ControllerGrid.setRules("23/3");
 
         pnlGrid = new PanelGrid(lignes, colonnes);
-
         this.add(pnlGrid);
-        this.add(new PanelSettings());
+        
+        pnlSettings = new PanelSettings();
+        this.add(pnlSettings);
 
         this.setLocation(400, 200);
         this.pack();
@@ -50,5 +52,9 @@ public class WindowMain extends JFrame {
 
     public PanelGrid getPanelGrid() {
         return pnlGrid;
+    }
+    
+    public PanelSettings getPanelSettings() {
+        return pnlSettings;
     }
 }

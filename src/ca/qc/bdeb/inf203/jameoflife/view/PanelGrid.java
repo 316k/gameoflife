@@ -2,6 +2,7 @@ package ca.qc.bdeb.inf203.jameoflife.view;
 
 import ca.qc.bdeb.inf203.jameoflife.controller.ControllerGrid;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,8 +30,8 @@ public class PanelGrid extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         JCell cellule = (JCell) e.getSource();
-                        ControllerGrid.flipCell(((PanelGrid) cellule.getParent()).getGrid(), cellule.getCoordonneeX(), cellule.getCoordonneeY());
-                        cellule.repaint();
+                        PanelSettings panel = ((WindowMain) cellule.getParent().getParent().getParent().getParent().getParent()).getPanelSettings();
+                        ControllerGrid.flipCell(((PanelGrid) cellule.getParent()).getGrid(), cellule.getCoordonneeX(), cellule.getCoordonneeY(), panel.getLblGeneration(), panel.getBtnProchaineGeneration());
                     }
                 });
 
