@@ -1,12 +1,11 @@
 package ca.qc.bdeb.inf203.jameoflife.view;
 
-import ca.qc.bdeb.inf203.jameoflife.controller.ControllerGrid;
-import ca.qc.bdeb.inf203.jameoflife.controller.ControllerWindows;
+import ca.qc.bdeb.inf203.jameoflife.controller.ControllerGrille;
+import ca.qc.bdeb.inf203.jameoflife.controller.ControllerFenetres;
 import java.awt.Dimension;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
-import java.awt.MenuShortcut;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -17,15 +16,15 @@ import javax.swing.*;
  *
  * @author Nicolas Hurtubise
  */
-public class WindowMain extends JFrame {
+public class WindowPrincipale extends JFrame {
     
-    private PanelGrid pnlGrid;
-    private PanelSettings pnlSettings;
+    private PanelGrille pnlGrid;
+    private PanelOptions pnlSettings;
     private MenuBar menu;
     private Menu menuFichier, menuApropos;
     private MenuItem miNouvellePartie, miSauvegarder, miQuitter, miApropos;
     
-    public WindowMain(int lignes, int colonnes) {
+    public WindowPrincipale(int lignes, int colonnes) {
         this.setTitle("Jame of Life");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setName("mainWindow");
@@ -37,11 +36,41 @@ public class WindowMain extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 getThis().dispose();
-                ControllerWindows.nouvellePartie();
+                ControllerFenetres.nouvellePartie();
             }
         });
+        
+        miSauvegarder = new MenuItem("Sauvegarder");
+        miSauvegarder.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControllerGrille.save();
+            }
+        });
+        
+        miQuitter = new MenuItem("Quitter");
+        miQuitter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        
         menuFichier.add(miNouvellePartie);
+        menuFichier.add(miSauvegarder);
+        menuFichier.addSeparator();
+        menuFichier.add(miQuitter);
+        
         menuApropos = new Menu("À propos");
+        
+        miApropos = new MenuItem("À propos");
+        miApropos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControllerFenetres.apropos();
+            }
+        });
+        
+        menuApropos.add(miApropos);
         
         menu.add(menuFichier);
         menu.add(menuApropos);
@@ -53,25 +82,25 @@ public class WindowMain extends JFrame {
             public void windowClosing(WindowEvent e) {
                 // Popup : Voulez-vous sauvegarder ?
                 if (JOptionPane.showConfirmDialog(null, (Object) "Voulez-vous sauvegarder ?", "Voulez-vous sauvegarder ?", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
-                    ControllerGrid.save();
+                    ControllerGrille.save();
                 }
             }
             
             @Override
             public void windowClosed(WindowEvent e) {
-                ControllerWindows.nouvellePartie();
+                ControllerFenetres.nouvellePartie();
             }
         });
         
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
-        ControllerGrid.setGridDimensions(lignes, colonnes);
+        ControllerGrille.setGridDimensions(lignes, colonnes);
         
-        pnlGrid = new PanelGrid(lignes, colonnes);
+        pnlGrid = new PanelGrille(lignes, colonnes);
         pnlGrid.setPreferredSize(new Dimension(400, 200));
         panel.add(pnlGrid);
         
-        pnlSettings = new PanelSettings();
+        pnlSettings = new PanelOptions();
         panel.add(pnlSettings);
         
         this.add(panel);
@@ -80,15 +109,15 @@ public class WindowMain extends JFrame {
         this.setVisible(true);
     }
     
-    public PanelGrid getPanelGrid() {
+    public PanelGrille getPanelGrid() {
         return pnlGrid;
     }
     
-    public PanelSettings getPanelSettings() {
+    public PanelOptions getPanelSettings() {
         return pnlSettings;
     }
     
-    public WindowMain getThis() {
+    public WindowPrincipale getThis() {
         return this;
     }
 }

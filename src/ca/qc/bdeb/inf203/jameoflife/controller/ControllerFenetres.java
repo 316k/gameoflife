@@ -1,16 +1,17 @@
 package ca.qc.bdeb.inf203.jameoflife.controller;
 
 import ca.qc.bdeb.inf203.jameoflife.view.WindowApropos;
-import ca.qc.bdeb.inf203.jameoflife.view.WindowMain;
+import ca.qc.bdeb.inf203.jameoflife.view.WindowPrincipale;
 import ca.qc.bdeb.inf203.jameoflife.view.WindowNouvellePartie;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Nicolas Hurtubise
  */
-public class ControllerWindows {
+public class ControllerFenetres {
 
-    private static WindowMain mainWindow = null;
+    private static WindowPrincipale fenetrePrincipale = null;
     private static WindowNouvellePartie fenetreNouvellePartie = null;
     private static WindowApropos fenetreApropos = null;
 
@@ -20,9 +21,13 @@ public class ControllerWindows {
         }
         fenetreNouvellePartie = new WindowNouvellePartie();
     }
+    
+    public static void quitter() {
+        fenetreNouvellePartie.dispose();
+    }
 
     public static void fenetreNouvellePartieOk(int lignes, int colonnes) {
-        mainWindow = new WindowMain(lignes, colonnes);
+        fenetrePrincipale = new WindowPrincipale(lignes, colonnes);
         fenetreNouvellePartie.dispose();
     }
 

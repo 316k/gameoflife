@@ -4,7 +4,7 @@
  */
 package ca.qc.bdeb.inf203.jameoflife.view;
 
-import ca.qc.bdeb.inf203.jameoflife.controller.ControllerWindows;
+import ca.qc.bdeb.inf203.jameoflife.controller.ControllerFenetres;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -81,7 +81,7 @@ public class WindowNouvellePartie extends JFrame {
         btnConfirm.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ControllerWindows.fenetreNouvellePartieOk(getLignes(), getColonnes());
+                ControllerFenetres.fenetreNouvellePartieOk(getLignes(), getColonnes());
             }
         });
         buttons.add(btnConfirm);

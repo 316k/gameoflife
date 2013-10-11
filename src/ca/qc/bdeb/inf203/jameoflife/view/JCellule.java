@@ -2,27 +2,21 @@ package ca.qc.bdeb.inf203.jameoflife.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 /**
  *
  * @author Nicolas Hurtubise
  */
-public class JCell extends JButton {
+public class JCellule extends JButton {
 
     private int x = 0, y = 0;
     private double opacite = 0.0;
     private int r, v, b;
     private boolean partyMode = false;
 
-    public JCell(int x, int y) {
+    public JCellule(int x, int y) {
         this.x = x;
         this.y = y;
         r = 255;

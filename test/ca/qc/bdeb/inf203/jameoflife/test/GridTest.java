@@ -5,7 +5,7 @@
 package ca.qc.bdeb.inf203.jameoflife.test;
 
 import ca.qc.bdeb.inf203.jameoflife.*;
-import ca.qc.bdeb.inf203.jameoflife.model.Grid;
+import ca.qc.bdeb.inf203.jameoflife.model.Grille;
 import ca.qc.bdeb.inf203.jameoflife.model.RuleSet;
 
 import org.junit.After;
@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 public class GridTest {
 
     private int x, y;
-    private Grid grid;
+    private Grille grid;
     private RuleSet rule;
 
     public GridTest() {
@@ -49,12 +49,12 @@ public class GridTest {
         x = 3;
         y = 3;
         rule = new RuleSet("23/3");
-        grid = new Grid(x, y, rule);
+        grid = new Grille(x, y, rule);
 
         boolean[][] originalValue = {{true, false, true}, {false, false, false}, {true, false, true}};
         grid.setBooleans(originalValue);
 
-        Grid expectedGrid = new Grid(x, y, rule);
+        Grille expectedGrid = new Grille(x, y, rule);
         boolean[][] exprectedValue = {{false, false, false}, {false, false, false}, {false, false, false}};
         expectedGrid.setBooleans(exprectedValue);
 
@@ -67,19 +67,19 @@ public class GridTest {
         x = 3;
         y = 3;
         rule = new RuleSet("23/3");
-        grid = new Grid(x, y, rule);
+        grid = new Grille(x, y, rule);
 
         boolean[][] originalValue = {{true, false, false}, {true, true, false}, {true, false, false}};
         grid.setBooleans(originalValue);
 
-        Grid expectedGrid1 = new Grid(x, y, rule);
+        Grille expectedGrid1 = new Grille(x, y, rule);
         boolean[][] exprectedValue1 = {{true, true, false}, {true, true, false}, {true, true, false}};
         expectedGrid1.setBooleans(exprectedValue1);
 
         grid.incrementGeneration(1);
         assertArrayEquals(expectedGrid1.getBooleans(), grid.getBooleans());
 
-        Grid expectedGrid2 = new Grid(x, y, rule);
+        Grille expectedGrid2 = new Grille(x, y, rule);
         boolean[][] exprectedValue2 = {{true, true, false}, {false, false, true}, {true, true, false}};
         expectedGrid2.setBooleans(exprectedValue2);
 
@@ -93,15 +93,15 @@ public class GridTest {
         x = 3;
         y = 3;
         rule = new RuleSet("23/3");
-        grid = new Grid(x, y, rule);
+        grid = new Grille(x, y, rule);
 
         boolean[][] originalValue = {{true, false, false}, {true, true, false}, {true, false, false}};
         grid.setBooleans(originalValue);
 
-        Grid originalGrid = new Grid(x, y, rule);
+        Grille originalGrid = new Grille(x, y, rule);
         originalGrid.setBooleans(originalValue);
         
-        Grid expectedGrid = new Grid(x, y, rule);
+        Grille expectedGrid = new Grille(x, y, rule);
         boolean[][] exprectedValue = {{true, true, false}, {true, true, false}, {true, true, false}};
         expectedGrid.setBooleans(exprectedValue);
 
@@ -118,21 +118,21 @@ public class GridTest {
         x = 4;
         y = 4;
         rule = new RuleSet("23/3");
-        grid = new Grid(x, y, rule);
+        grid = new Grille(x, y, rule);
 
         grid.setWrap(true);
         
         boolean[][] originalValue = {{false,false,false,false}, {true,false,true,false}, {true,false,false,true}, {false,true,false,false}};
         grid.setBooleans(originalValue);
 
-        Grid expectedGrid1 = new Grid(x, y, rule);
+        Grille expectedGrid1 = new Grille(x, y, rule);
         boolean[][] exprectedValue1 = {{false,true,false,false}, {true,true,false,false}, {true,false,true,true}, {true,false,false,false}};
         expectedGrid1.setBooleans(exprectedValue1);
 
         grid.incrementGeneration(1);
         assertArrayEquals(expectedGrid1.getBooleans(), grid.getBooleans());
         
-        Grid expectedGrid2 = new Grid(x, y, rule);
+        Grille expectedGrid2 = new Grille(x, y, rule);
         boolean[][] exprectedValue2 = {{false,true,false,false}, {false,false,false,false}, {false,false,true,false}, {true,false,true,false}};
         expectedGrid2.setBooleans(exprectedValue2);
         

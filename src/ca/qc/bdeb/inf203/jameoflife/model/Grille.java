@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author Nicolas Hurtubise
  */
-public class Grid {
+public class Grille {
 
     private RuleSet ruleSet;
     private boolean grid[][];
@@ -17,12 +17,12 @@ public class Grid {
         this.wrap = wrap;
     }
 
-    public Grid(int x, int y, RuleSet ruleSet) {
+    public Grille(int x, int y, RuleSet ruleSet) {
         grid = new boolean[x][y];
         this.ruleSet = ruleSet;
     }
 
-    public Grid setCell(int x, int y, boolean active) {
+    public Grille setCell(int x, int y, boolean active) {
         grid[x][y] = active;
         return this;
     }
@@ -31,12 +31,12 @@ public class Grid {
         return grid[x][y];
     }
 
-    public Grid flipCell(int x, int y) {
+    public Grille flipCell(int x, int y) {
         grid[x][y] = !grid[x][y];
         return this;
     }
 
-    public Grid randomize() {
+    public Grille randomize() {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 grid[i][j] = new Random().nextBoolean(); // Ça devrait être une méthode statique
@@ -49,17 +49,17 @@ public class Grid {
         return ruleSet;
     }
 
-    public Grid setRuleSet(RuleSet ruleSet) {
+    public Grille setRuleSet(RuleSet ruleSet) {
         this.ruleSet = ruleSet;
         return this;
     }
 
-    public Grid setRuleSet(String ruleSet) throws IllegalArgumentException {
+    public Grille setRuleSet(String ruleSet) throws IllegalArgumentException {
         this.ruleSet = new RuleSet(ruleSet);
         return this;
     }
 
-    public Grid incrementGeneration(double nbrGenerations) {
+    public Grille incrementGeneration(double nbrGenerations) {
         // On arrondit les doubles pour éviter des trucs étranges
         // @TODO : Trouver une façon plus fiable.
         nbrGenerations = ((int) (nbrGenerations * 10000.0)) / 10000.0;
@@ -178,7 +178,7 @@ public class Grid {
      * @param grid
      * @return this
      */
-    public Grid setBooleans(boolean[][] grid) {
+    public Grille setBooleans(boolean[][] grid) {
         this.grid = grid;
         return this;
     }

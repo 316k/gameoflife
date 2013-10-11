@@ -4,8 +4,8 @@
  */
 package ca.qc.bdeb.inf203.jameoflife.view;
 
-import ca.qc.bdeb.inf203.jameoflife.controller.ControllerGrid;
-import ca.qc.bdeb.inf203.jameoflife.controller.ControllerWindows;
+import ca.qc.bdeb.inf203.jameoflife.controller.ControllerGrille;
+import ca.qc.bdeb.inf203.jameoflife.controller.ControllerFenetres;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +25,7 @@ import javax.swing.event.ChangeListener;
  *
  * @author Nicolas Hurtubise
  */
-public class PanelSettings extends JPanel {
+public class PanelOptions extends JPanel {
 
     private JButton btnRandomize, btnProchaineGeneration, btnAide;
     private JValidTextField vTxtRule, vTxtGeneration;
@@ -33,7 +33,7 @@ public class PanelSettings extends JPanel {
     private JComboBox cmbAlgorithme;
     private JCheckBox chkPacManMode, chkPartyMode;
 
-    public PanelSettings() {
+    public PanelOptions() {
 
         JPanel content = new JPanel();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
@@ -50,7 +50,7 @@ public class PanelSettings extends JPanel {
         cmbAlgorithme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ControllerGrid.setRules(getRule(), getGrid(), lblGeneration, btnProchaineGeneration);
+                ControllerGrille.setRules(getRule(), getGrid(), lblGeneration, btnProchaineGeneration);
                 vTxtRule.setEnabled(cmbAlgorithme.getSelectedIndex() == 3);
             }
         });
@@ -64,7 +64,7 @@ public class PanelSettings extends JPanel {
             public void keyReleased(KeyEvent e) {
                 btnProchaineGeneration.setEnabled(isInputValid());
                 if (vTxtRule.isInputValid()) {
-                    ControllerGrid.setRules(getRule(), getGrid(), lblGeneration, btnProchaineGeneration);
+                    ControllerGrille.setRules(getRule(), getGrid(), lblGeneration, btnProchaineGeneration);
                 }
             }
         });
@@ -77,7 +77,7 @@ public class PanelSettings extends JPanel {
         chkPacManMode.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                ControllerGrid.setWrap(chkPacManMode.isSelected(), getGrid(), lblGeneration, btnProchaineGeneration);
+                ControllerGrille.setWrap(chkPacManMode.isSelected(), getGrid(), lblGeneration, btnProchaineGeneration);
             }
         });
         content.add(chkPacManMode);
@@ -86,13 +86,13 @@ public class PanelSettings extends JPanel {
         chkPartyMode.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                JCell[][] grid = getGrid();
+                JCellule[][] grid = getGrid();
                 for (int i = 0; i < grid.length; i++) {
                     for (int j = 0; j < grid[0].length; j++) {
                         grid[i][j].setParty(((JCheckBox) e.getSource()).isSelected());
                     }
                 }
-                ControllerGrid.synchroniser(getGrid(), lblGeneration, btnProchaineGeneration);
+                ControllerGrille.synchroniser(getGrid(), lblGeneration, btnProchaineGeneration);
             }
         });
         content.add(chkPartyMode);
@@ -122,7 +122,7 @@ public class PanelSettings extends JPanel {
         btnRandomize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ControllerGrid.randomize(getGrid(), lblGeneration, btnProchaineGeneration);
+                ControllerGrille.randomize(getGrid(), lblGeneration, btnProchaineGeneration);
             }
         });
 
@@ -134,7 +134,7 @@ public class PanelSettings extends JPanel {
         btnProchaineGeneration.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ControllerGrid.prochaineGeneration(getGrid(), getSautDeGeneration(), lblGeneration, btnProchaineGeneration);
+                ControllerGrille.prochaineGeneration(getGrid(), getSautDeGeneration(), lblGeneration, btnProchaineGeneration);
             }
         });
 
@@ -147,7 +147,7 @@ public class PanelSettings extends JPanel {
         btnAide.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ControllerWindows.apropos();
+                ControllerFenetres.apropos();
             }
         });
         content.add(btnAide);
@@ -213,8 +213,8 @@ public class PanelSettings extends JPanel {
         return valid;
     }
 
-    public JCell[][] getGrid() {
-        WindowMain window = (WindowMain) this.getParent().getParent().getParent().getParent().getParent();
+    public JCellule[][] getGrid() {
+        WindowPrincipale window = (WindowPrincipale) this.getParent().getParent().getParent().getParent().getParent();
 
         return window.getPanelGrid().getGrid();
     }
