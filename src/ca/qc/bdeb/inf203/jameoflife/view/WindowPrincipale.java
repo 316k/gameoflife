@@ -24,6 +24,11 @@ public class WindowPrincipale extends JFrame {
     private Menu menuFichier, menuApropos;
     private MenuItem miNouvellePartie, miSauvegarder, miQuitter, miApropos;
     
+    /**
+     * Constructeur
+     * @param lignes nombre de lignes sur la grille de Game of Life
+     * @param colonnes nombre de colonnes sur la grille de Game of Life
+     */
     public WindowPrincipale(int lignes, int colonnes) {
         this.setTitle("Jame of Life");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -110,6 +115,9 @@ public class WindowPrincipale extends JFrame {
         this.setVisible(true);
     }
     
+    /**
+     * @return le panel de grille de Game of Life
+     */
     public PanelGrille getPanelGrid() {
         return pnlGrid;
     }

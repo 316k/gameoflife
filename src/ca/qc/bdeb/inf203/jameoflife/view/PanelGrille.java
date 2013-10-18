@@ -16,21 +16,26 @@ public class PanelGrille extends JPanel {
 
     private JCellule[][] cellules;
 
-    public PanelGrille(int width, int height) {
+    /**
+     * Crée la grille du game of life
+     * @param largeur de la grille
+     * @param hauteur de la grillle
+     */
+    public PanelGrille(int largeur, int hauteur) {
         this.setBackground(Color.black);
 
-        cellules = new JCellule[width][height];
+        cellules = new JCellule[largeur][hauteur];
 
-        this.setLayout(new GridLayout(width, height));
+        this.setLayout(new GridLayout(largeur, hauteur));
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < largeur; i++) {
+            for (int j = 0; j < hauteur; j++) {
                 cellules[i][j] = new JCellule(i, j);
                 cellules[i][j].addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         JCellule cellule = (JCellule) e.getSource();
-                        ControllerGrille.flipCell(((PanelGrille) cellule.getParent()).getGrid(), cellule.getCoordonneeX(), cellule.getCoordonneeY(), getPanelSettings().getLblGeneration(), getPanelSettings().getBtnProchaineGeneration());
+                        ControllerGrille.flipCell(((PanelGrille) cellule.getParent()).getGrid(), cellule.getCoordonneeX(), cellule.getCoordonneeY(), getPanelOptions().getLblGeneration(), getPanelOptions().getBtnProchaineGeneration());
                     }
                 });
 
@@ -43,11 +48,17 @@ public class PanelGrille extends JPanel {
         this.setVisible(true);
     }
 
+    /**
+     * @return la grille de JCellules
+     */
     public JCellule[][] getGrid() {
-        return this.cellules;
+        return cellules;
     }
 
-    public PanelOptions getPanelSettings() {
+    /**
+     * @return un accès au PanelOptions
+     */
+    public PanelOptions getPanelOptions() {
         WindowPrincipale window = (WindowPrincipale) this.getParent().getParent().getParent().getParent().getParent();
         return window.getPanelSettings();
     }

@@ -16,6 +16,11 @@ public class JCellule extends JButton {
     private int r, v, b;
     private boolean partyMode = false;
 
+    /**
+     * Crée une cellule
+     * @param x la position en x de la grille
+     * @param y la position en y de la grille
+     */
     public JCellule(int x, int y) {
         this.x = x;
         this.y = y;
@@ -25,14 +30,23 @@ public class JCellule extends JButton {
         this.setBorder(null);
     }
 
+    /**
+     * @param partyMode si le party mode est activé pour la cellule
+     */
     public void setParty(boolean partyMode) {
         this.partyMode = partyMode;
     }
 
+    /**
+     * @return l'opacité actuelle de la cellule
+     */
     public double getOpacite() {
         return opacite;
     }
 
+    /**
+     * @param opacite l'opacité de la cellule
+     */
     public void setOpacite(double opacite) {
         // Swap les couleurs
         Random rnd = new Random();
@@ -50,10 +64,17 @@ public class JCellule extends JButton {
         this.opacite = opacite;
     }
 
+    /**
+     * @return la coordonnée X de la cellule
+     */
     public int getCoordonneeX() {
         return x;
     }
 
+    /**
+     *
+     * @return la coordonnée Y de la cellule
+     */
     public int getCoordonneeY() {
         return y;
     }

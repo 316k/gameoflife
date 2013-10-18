@@ -25,8 +25,6 @@ public class JValidTextField extends JTextField {
     /**
      * Constructeur
      *
-     * @param validationRegex Regex qui sera utilisé pour déterminer si le
-     * composant contient un texte valide.
      * @param validColor Couleur d'arrière-plan en cas d'entrée valide.
      * @param errorColor Couleur d'arrière-plan en cas d'erreur de validation.
      */
@@ -42,14 +40,26 @@ public class JValidTextField extends JTextField {
         this.validColor = validColor;
     }
 
+    /**
+     * Indique un regex à utiliser pour valider l'entrée utilisateur
+     * @param validationRegex le regex de validation
+     */
     public void setRegex(String validationRegex) {
         this.validationRegex = validationRegex;
     }
 
+    /**
+     * Défini une valeur (numérique) minimale pour l'entrée utilisateur
+     * @param min valeur minimale
+     */
     public void setMinValue(Double min) {
         this.minValue = min;
     }
 
+    /**
+     * Défini une valeur (numérique) maximale pour l'entrée utilisateur
+     * @param max valeur maximale
+     */
     public void setMaxValue(Double max) {
         this.maxValue = max;
     }
@@ -94,6 +104,10 @@ public class JValidTextField extends JTextField {
         return valid;
     }
 
+    /**
+     * Défini si le textfield peut contenir uniquement une valeur numérique
+     * @param numericOnly
+     */
     public void setNumericOnly(boolean numericOnly) {
         this.numericOnly = numericOnly;
     }

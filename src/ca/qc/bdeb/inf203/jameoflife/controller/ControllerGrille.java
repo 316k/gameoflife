@@ -23,6 +23,11 @@ public class ControllerGrille {
 
     private static Grille grid;
 
+    /**
+     * Définit les dimentions de la grille à utiliser
+     * @param width
+     * @param height
+     */
     public static void setGridDimensions(int width, int height) {
         grid = new Grille(width, height, new RuleSet("23/3")); // Conway's game of life by default
     }
@@ -31,34 +36,69 @@ public class ControllerGrille {
      * Défini la règle à suivre pour la grille
      *
      * @param ruleString Règle de Game of life au format "[Survit]/[Naît]"
-     * @return si le changement de règle a fonctionné (si la règle spécifiée est
-     * valide)
+     * @param grid 
+     * @param lblGeneration 
+     * @param btnProchaineGeneration 
      */
     public static void setRules(String ruleString, JCellule[][] grid, JLabel lblGeneration, JButton btnProchaineGeneration) {
         ControllerGrille.grid.setRuleSet(ruleString);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
 
+    /**
+     * Inverse la cellule à la position (x,y)
+     * @param grid
+     * @param x
+     * @param y
+     * @param lblGeneration
+     * @param btnProchaineGeneration
+     */
     public static void flipCell(JCellule[][] grid, int x, int y, JLabel lblGeneration, JButton btnProchaineGeneration) {
         ControllerGrille.grid.flipCell(x, y);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
 
+    /**
+     * Randomize la grille de cellules
+     * @param grid
+     * @param lblGeneration
+     * @param btnProchaineGeneration
+     */
     public static void randomize(JCellule[][] grid, JLabel lblGeneration, JButton btnProchaineGeneration) {
         ControllerGrille.grid.randomize();
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
 
+    /**
+     * Fait augmenter la grille de nbrGenerations générations
+     * @param grid
+     * @param nbrGenerations
+     * @param lblGeneration
+     * @param btnProchaineGeneration
+     */
     public static void prochaineGeneration(JCellule[][] grid, double nbrGenerations, JLabel lblGeneration, JButton btnProchaineGeneration) {
         ControllerGrille.grid.incrementGeneration(nbrGenerations);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
 
+    /**
+     * Définit si la grille doit être en mode wrap (Pac-man mode)
+     * @param isSelected
+     * @param grid
+     * @param lblGeneration
+     * @param btnProchaineGeneration
+     */
     public static void setWrap(boolean isSelected, JCellule[][] grid, JLabel lblGeneration, JButton btnProchaineGeneration) {
         ControllerGrille.grid.setWrap(isSelected);
         synchroniser(grid, lblGeneration, btnProchaineGeneration);
     }
 
+    /**
+     * Synchronise la grille de JCellules avec le modèle Grille
+     * @param grid
+     * @param lblGeneration
+     * @param btnProchaineGeneration
+     */
     public static void synchroniser(JCellule[][] grid, JLabel lblGeneration, JButton btnProchaineGeneration) {
         double[][] opacites = ControllerGrille.grid.getOpacites();
 
@@ -83,6 +123,9 @@ public class ControllerGrille {
         }
     }
 
+    /**
+     * Sauvegarde la grille dans un fichier
+     */
     public static void save() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showSaveDialog(null);

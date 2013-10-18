@@ -10,6 +10,13 @@ public class RuleSet {
     private int[] survive = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
     private int[] born = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
 
+    /**
+     * Constructeur
+     *
+     * @param rule au format "Survive/Born". Par exemple, Conway s'exprime de la
+     * façon suivante : 23/3
+     * @throws IllegalArgumentException
+     */
     public RuleSet(String rule) throws IllegalArgumentException {
         if (!rule.matches("[0-8]{0,9}/[0-8]{0,9}")) {
             throw new IllegalArgumentException("Bad RuleSet string format.");

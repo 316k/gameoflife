@@ -3,6 +3,7 @@ package ca.qc.bdeb.inf203.jameoflife.model;
 import java.util.Random;
 
 /**
+ * Une grille de Game of Life
  *
  * @author Nicolas Hurtubise
  */
@@ -13,29 +14,64 @@ public class Grille {
     private double generation = 0;
     private boolean wrap = false;
 
+    /**
+     * Constructeur
+     *
+     * @param longueur
+     * @param hauteur
+     * @param ruleSet
+     */
+    public Grille(int longueur, int hauteur, RuleSet ruleSet) {
+        grid = new boolean[longueur][hauteur];
+        this.ruleSet = ruleSet;
+    }
+
+    /**
+     * Défini si le wrapping est activé (mode Pac-man)
+     *
+     * @param wrap
+     */
     public void setWrap(boolean wrap) {
         this.wrap = wrap;
     }
 
-    public Grille(int x, int y, RuleSet ruleSet) {
-        grid = new boolean[x][y];
-        this.ruleSet = ruleSet;
-    }
-
-    public Grille setCell(int x, int y, boolean active) {
-        grid[x][y] = active;
+    /**
+     * Définit arbitrairement la valeur d'une cellule
+     *
+     * @param x
+     * @param y
+     * @param actif
+     * @return this
+     */
+    public Grille setCell(int x, int y, boolean actif) {
+        grid[x][y] = actif;
         return this;
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return La valeur de la cellule en (x, y)
+     */
     public boolean getCell(int x, int y) {
         return grid[x][y];
     }
 
+    /**
+     * Inverse la valeur à la position (x, y)
+     * @param x
+     * @param y
+     * @return this
+     */
     public Grille flipCell(int x, int y) {
         grid[x][y] = !grid[x][y];
         return this;
     }
 
+    /**
+     * Donne une valeur aléatoire à chaque cellule de la grille
+     * @return this
+     */
     public Grille randomize() {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
@@ -45,41 +81,58 @@ public class Grille {
         return this;
     }
 
+    /**
+     * @return les règles dirigeant les actions de la grille
+     */
     public RuleSet getRuleSet() {
         return ruleSet;
     }
 
+    /**
+     * Définit les règles dirigeant les actions de la grille
+     * @param ruleSet règles
+     * @return this
+     */
     public Grille setRuleSet(RuleSet ruleSet) {
         this.ruleSet = ruleSet;
         return this;
     }
 
+    /**
+     * Définit les règles dirigeant les actions de la grille
+     * @param ruleSet règles en String
+     * @return this
+     * @throws IllegalArgumentException si le format de règles n'est pas standard
+     */
     public Grille setRuleSet(String ruleSet) throws IllegalArgumentException {
         this.ruleSet = new RuleSet(ruleSet);
         return this;
     }
-    
+
     /**
-     *
-     * @param nbrGenerations
-     * @return
+     * Incrémente la génération de la grille
+     * @param nbrGenerations nombre de générations duquel augmenter 
+     * @return this
      */
     public Grille incrementGeneration(double nbrGenerations) {
-        while(nbrGenerations >= 1) {
+        while (nbrGenerations >= 1) {
             generation += 1.0;
             nbrGenerations -= 1.0;
             grid = nextGeneration();
         }
-        
-        if(generation + nbrGenerations > Math.floor(generation) + 1) {
+
+        if (generation + nbrGenerations > Math.floor(generation) + 1) {
             // Une dernière fois
             grid = nextGeneration();
         }
-        
+
         generation += nbrGenerations;
         return this;
     }
 
+    /**
+     * @return la génération actuelle
+     */
     public double getGeneration() {
         return generation;
     }
@@ -136,6 +189,9 @@ public class Grille {
         return futureGrid;
     }
 
+    /**
+     * @return un tableau de contenant les opacités des cellules
+     */
     public double[][] getOpacites() {
         double[][] opacites = new double[grid.length][grid[0].length];
         boolean[][] nextGrid = this.nextGeneration();
@@ -182,7 +238,7 @@ public class Grille {
     }
 
     /**
-     * Indique si la grille est stable (si les cellules resteront à jamais dans
+     * @return si la grille est stable (si les cellules resteront à jamais dans
      * le même état).
      */
     public boolean isStable() {
@@ -197,7 +253,7 @@ public class Grille {
     }
 
     /**
-     * Méthode dumpant la grille actuelle au format texte. O => cellule vivante
+     * @return la grille actuelle au format String: O => cellule vivante
      * . => cellule morte
      */
     public String dump() {

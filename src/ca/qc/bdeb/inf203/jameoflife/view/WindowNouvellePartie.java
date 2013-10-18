@@ -30,6 +30,9 @@ public class WindowNouvellePartie extends JFrame {
     private JValidTextField vTxtColonnes = new JValidTextField(Color.white, Color.pink);
     private JButton btnConfirm = new JButton();
 
+    /**
+     * Constructeur
+     */
     public WindowNouvellePartie() {
         this.setTitle("Nouvelle Partie - Jame of Life");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,14 +102,23 @@ public class WindowNouvellePartie extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Enable ou disable le bouton de confirmation, selon si les champs d'entrée sont valides
+     */
     public void check() {
         btnConfirm.setEnabled(vTxtColonnes.isInputValid() && vTxtLignes.isInputValid());
     }
 
+    /**
+     * @return le nombre de lignes dans la grille de Game of Life
+     */
     public int getLignes() {
         return Integer.parseInt(vTxtLignes.getText());
     }
 
+    /**
+     * @return le nombre de colonnes dans la grille de Game of Life
+     */
     public int getColonnes() {
         return Integer.parseInt(vTxtColonnes.getText());
     }

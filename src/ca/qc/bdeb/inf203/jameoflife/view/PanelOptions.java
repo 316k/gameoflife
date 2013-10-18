@@ -29,6 +29,9 @@ public class PanelOptions extends JPanel {
     private JComboBox cmbAlgorithme;
     private JCheckBox chkPacManMode, chkPartyMode;
 
+    /**
+     * Options de la fenêtre du Game of life
+     */
     public PanelOptions() {
 
         JPanel content = new JPanel();
@@ -153,18 +156,32 @@ public class PanelOptions extends JPanel {
         this.setVisible(true);
     }
 
+    /**
+     * Donne l'accès au bouton de la prochaine génération
+     *
+     * @return btnProchaineGeneration
+     */
     public JButton getBtnProchaineGeneration() {
         return btnProchaineGeneration;
     }
 
+    /**
+     * Donne l'accès au label de la génération actuelle
+     */
     public JLabel getLblGeneration() {
         return lblGeneration;
     }
 
+    /**
+     * @return la valeur Double du saut de génération à faire
+     */
     private double getSautDeGeneration() {
         return Double.parseDouble(vTxtGeneration.getText());
     }
 
+    /**
+     * @return la valeur de la règle à utiliser
+     */
     private String getRule() {
         String rule = "";
         switch (cmbAlgorithme.getSelectedIndex()) {
@@ -201,7 +218,10 @@ public class PanelOptions extends JPanel {
         return rule;
     }
 
-    public boolean isInputValid() {
+    /**
+     * Vérifie si les champs d'entrée sont valides
+     */
+    private boolean isInputValid() {
         boolean valid = vTxtGeneration.isInputValid();
         if (vTxtRule.isEnabled() && !vTxtRule.isInputValid()) {
             valid = false;
@@ -209,7 +229,10 @@ public class PanelOptions extends JPanel {
         return valid;
     }
 
-    public JCellule[][] getGrid() {
+    /**
+     * @return la grille de JCellules
+     */
+    private JCellule[][] getGrid() {
         WindowPrincipale window = (WindowPrincipale) this.getParent().getParent().getParent().getParent().getParent();
 
         return window.getPanelGrid().getGrid();
