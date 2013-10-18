@@ -15,7 +15,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Classe de unit tests pour la grille de Game of Life
  * @author k
  */
 public class GridTest {
@@ -24,25 +24,9 @@ public class GridTest {
     private Grille grid;
     private RuleSet rule;
 
-    public GridTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
+    /**
+     * Premier test avec les règles de Conway
+     */
     @Test
     public void conwaySimple1() {
         x = 3;
@@ -61,6 +45,9 @@ public class GridTest {
         assertArrayEquals(expectedGrid.getBooleans(), grid.getBooleans());
     }
 
+    /**
+     * Second test avec les règles de Conway
+     */
     @Test
     public void conwaySimple2() {
         x = 3;
@@ -87,6 +74,9 @@ public class GridTest {
 
     }
 
+    /**
+     * Test les fractions de générations
+     */
     @Test
     public void generationFractionnelle() {
         x = 3;
@@ -112,6 +102,9 @@ public class GridTest {
         assertArrayEquals(expectedGrid.getBooleans(), grid.getBooleans());
     }
     
+    /**
+     * Test le mode Pac-man (wrapping)
+     */
     @Test
     public void pacmanMode() {
         x = 4;

@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 /**
- *
+ * Panel contenant la grille de game of life
  * @author Nicolas Hurtubise
  */
 public class PanelGrille extends JPanel {

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.qc.bdeb.inf203.jameoflife.view;
 
 import ca.qc.bdeb.inf203.jameoflife.controller.ControllerFenetres;
@@ -13,6 +9,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
+ * Fenêtre de création de partie
  * @author Nicolas Hurtubise
  */
 public class WindowNouvellePartie extends JFrame {
@@ -35,8 +33,7 @@ public class WindowNouvellePartie extends JFrame {
      */
     public WindowNouvellePartie() {
         this.setTitle("Nouvelle Partie - Jame of Life");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel contentPane = new JPanel();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
 
@@ -70,7 +67,7 @@ public class WindowNouvellePartie extends JFrame {
         JPanel content = new JPanel();
         content.setPreferredSize(new Dimension(300, 100));
         content.setLayout(new BoxLayout(content, BoxLayout.LINE_AXIS));
-        
+
         content.add(new JLabel(" "));
         content.add(new JLabel("Taille de la grille : "));
 
@@ -88,7 +85,7 @@ public class WindowNouvellePartie extends JFrame {
         btnConfirm.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ControllerFenetres.fenetreNouvellePartieOk(getLignes(), getColonnes());
+                ControllerFenetres.confirmationNouvellePartie(getLignes(), getColonnes());
             }
         });
         buttons.add(btnConfirm);
@@ -97,13 +94,23 @@ public class WindowNouvellePartie extends JFrame {
         contentPane.add(buttons);
 
         this.getContentPane().add(contentPane);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                ControllerFenetres.fermeture();
+            }
+        });
+
+
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
     /**
-     * Enable ou disable le bouton de confirmation, selon si les champs d'entrée sont valides
+     * Enable ou disable le bouton de confirmation, selon si les champs d'entrée
+     * sont valides
      */
     public void check() {
         btnConfirm.setEnabled(vTxtColonnes.isInputValid() && vTxtLignes.isInputValid());

@@ -11,6 +11,10 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class JameOfLife {
 
+    /**
+     * Main
+     * @param args arguments de la ligne de commande (pas utilisés)
+     */
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

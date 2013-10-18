@@ -18,7 +18,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- *
+ * Panel d'options pour la grille
  * @author Nicolas Hurtubise
  */
 public class PanelOptions extends JPanel {
@@ -166,7 +166,7 @@ public class PanelOptions extends JPanel {
     }
 
     /**
-     * Donne l'accès au label de la génération actuelle
+     * @return le label de la génération actuelle
      */
     public JLabel getLblGeneration() {
         return lblGeneration;

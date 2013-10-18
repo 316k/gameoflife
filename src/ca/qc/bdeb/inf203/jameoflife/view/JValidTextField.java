@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.qc.bdeb.inf203.jameoflife.view;
 
 import java.awt.Color;
@@ -10,7 +6,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 
 /**
- *
+ * Surcharge de la classe JTextField permettant la validation de l'entrée
  * @author Nicolas Hurtubise
  */
 public class JValidTextField extends JTextField {

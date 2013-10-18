@@ -1,7 +1,7 @@
 package ca.qc.bdeb.inf203.jameoflife.model;
 
 /**
- *
+ * Règle de game of life
  * @author Nicolas Hurtubise
  */
 public class RuleSet {

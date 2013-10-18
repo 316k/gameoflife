@@ -6,11 +6,14 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 
 /**
- *
+ * Fenêtre "À propos"
  * @author Nicolas Hurtubise
  */
 public class WindowApropos extends JFrame {
 
+    /**
+     * Constructeur
+     */
     public WindowApropos() {
         this.setTitle("À propos - Jame of life");
         JEditorPane txtHelp = new JEditorPane("text/html", "");

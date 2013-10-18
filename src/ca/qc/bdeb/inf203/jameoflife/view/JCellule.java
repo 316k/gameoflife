@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.swing.JButton;
 
 /**
- *
+ * Cellule de Game of Life (surcharge d'un JButton)
  * @author Nicolas Hurtubise
  */
 public class JCellule extends JButton {

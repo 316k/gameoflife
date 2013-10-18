@@ -13,7 +13,7 @@ import java.awt.event.WindowAdapter;
 import javax.swing.*;
 
 /**
- *
+ * Fenêtre de jeu
  * @author Nicolas Hurtubise
  */
 public class WindowPrincipale extends JFrame {
@@ -94,7 +94,8 @@ public class WindowPrincipale extends JFrame {
             
             @Override
             public void windowClosed(WindowEvent e) {
-                ControllerFenetres.quitter();
+                dispose();
+                ControllerFenetres.fermeture();
             }
         });
         

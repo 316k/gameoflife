@@ -8,15 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 /**
- *
+ * Controller s'occupant de la grille de jeu
  * @author Nicolas Hurtubise
  */
 public class ControllerGrille {
