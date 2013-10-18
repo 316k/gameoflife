@@ -35,7 +35,6 @@ public class WindowPrincipale extends JFrame {
         miNouvellePartie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                getThis().dispose();
                 ControllerFenetres.nouvellePartie();
             }
         });
@@ -52,6 +51,8 @@ public class WindowPrincipale extends JFrame {
         miQuitter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
+                ControllerFenetres.quitter();
             }
         });
         
@@ -88,7 +89,7 @@ public class WindowPrincipale extends JFrame {
             
             @Override
             public void windowClosed(WindowEvent e) {
-                ControllerFenetres.nouvellePartie();
+                ControllerFenetres.quitter();
             }
         });
         
@@ -115,9 +116,5 @@ public class WindowPrincipale extends JFrame {
     
     public PanelOptions getPanelSettings() {
         return pnlSettings;
-    }
-    
-    public WindowPrincipale getThis() {
-        return this;
     }
 }

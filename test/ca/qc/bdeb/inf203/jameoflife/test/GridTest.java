@@ -4,7 +4,6 @@
  */
 package ca.qc.bdeb.inf203.jameoflife.test;
 
-import ca.qc.bdeb.inf203.jameoflife.*;
 import ca.qc.bdeb.inf203.jameoflife.model.Grille;
 import ca.qc.bdeb.inf203.jameoflife.model.RuleSet;
 

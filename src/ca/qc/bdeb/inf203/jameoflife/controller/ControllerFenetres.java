@@ -19,6 +19,10 @@ public class ControllerFenetres {
         if(fenetreNouvellePartie != null) {
             fenetreNouvellePartie.dispose();
         }
+        if(fenetrePrincipale != null) {
+            fenetrePrincipale.dispose();
+        }
+        
         fenetreNouvellePartie = new WindowNouvellePartie();
     }
     

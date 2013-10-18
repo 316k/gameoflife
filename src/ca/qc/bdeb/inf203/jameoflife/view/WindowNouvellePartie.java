@@ -8,6 +8,7 @@ import ca.qc.bdeb.inf203.jameoflife.controller.ControllerFenetres;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -66,18 +67,21 @@ public class WindowNouvellePartie extends JFrame {
         JPanel content = new JPanel();
         content.setPreferredSize(new Dimension(300, 100));
         content.setLayout(new BoxLayout(content, BoxLayout.LINE_AXIS));
-
+        
+        content.add(new JLabel(" "));
         content.add(new JLabel("Taille de la grille : "));
 
         content.add(vTxtLignes);
         content.add(new JLabel(" x "));
         content.add(vTxtColonnes);
+        content.add(new JLabel(" "));
 
         JPanel buttons = new JPanel(new GridLayout(1, 3));
         buttons.add(new JLabel());
         buttons.add(new JLabel());
 
         btnConfirm.setText("Débuter");
+        btnConfirm.setMargin(new Insets(5, 15, 5, 15));
         btnConfirm.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
