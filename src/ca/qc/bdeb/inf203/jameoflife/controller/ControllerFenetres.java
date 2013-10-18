@@ -3,7 +3,6 @@ package ca.qc.bdeb.inf203.jameoflife.controller;
 import ca.qc.bdeb.inf203.jameoflife.view.WindowApropos;
 import ca.qc.bdeb.inf203.jameoflife.view.WindowPrincipale;
 import ca.qc.bdeb.inf203.jameoflife.view.WindowNouvellePartie;
-import javax.swing.JFrame;
 
 /**
  *

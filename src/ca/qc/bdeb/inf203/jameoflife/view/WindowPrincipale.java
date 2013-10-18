@@ -102,7 +102,7 @@ public class WindowPrincipale extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
         ControllerGrille.setGridDimensions(lignes, colonnes);
         
-        pnlGrid = new PanelGrille(lignes, colonnes);
+         pnlGrid = new PanelGrille(lignes, colonnes);
         pnlGrid.setPreferredSize(new Dimension(400, 200));
         panel.add(pnlGrid);
         
@@ -122,6 +122,10 @@ public class WindowPrincipale extends JFrame {
         return pnlGrid;
     }
     
+    /**
+     *
+     * @return le panel des options
+     */
     public PanelOptions getPanelSettings() {
         return pnlSettings;
     }

@@ -121,7 +121,7 @@ public class Grille {
             grid = nextGeneration();
         }
 
-        if (generation + nbrGenerations > Math.floor(generation) + 1) {
+        if (generation + nbrGenerations >= Math.floor(generation) + 1) {
             // Une dernière fois
             grid = nextGeneration();
         }

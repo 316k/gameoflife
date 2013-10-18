@@ -107,7 +107,7 @@ public class PanelOptions extends JPanel {
         vTxtGeneration.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                btnProchaineGeneration.setEnabled(isInputValid());
+                //btnProchaineGeneration.setEnabled(isInputValid());
             }
         });
         content.add(vTxtGeneration);
